@@ -35,3 +35,7 @@ This section will cover some hot tips when trying to interacting with this repos
 ##### Login Page
 
 <img alt="" src="https://github.com/MET-DEV/Django-E-Commerce/blob/master/project_images/capture_20220323081044867.jpg"></img>
+
+### Quickstart
+
+Clone the git repo with `git clone <path>`
