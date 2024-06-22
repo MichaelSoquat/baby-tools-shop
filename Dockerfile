@@ -1,8 +1,11 @@
 FROM python:3.10-alpine
 
-WORKDIR /app/babyshop_app
+WORKDIR /app
 
 COPY . .
+
+# Wechsle in das Verzeichnis der Django-Anwendung
+WORKDIR /app/babyshop_app
 
 RUN pip install -r requirements.txt
 
