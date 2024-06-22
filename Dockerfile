@@ -1,4 +1,11 @@
-FROM python:3.10-alpine
+ARG BASE_IMAGE=python:3.10-alpine
+ARG APP_PORT=8000
+ARG APP_ENV=production
+
+FROM ${BASE_IMAGE}
+
+ENV APP_PORT=${APP_PORT}
+ENV APP_ENV=${APP_ENV}
 
 WORKDIR /app
 
@@ -9,6 +16,6 @@ WORKDIR /app/babyshop_app
 
 RUN pip install -r requirements.txt
 
-EXPOSE 8000
+EXPOSE ${APP_PORT}
 
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["python", "manage.py", "runserver", `0.0.0.0:${APP_PORT}`]

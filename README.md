@@ -52,9 +52,9 @@ python manage.py makemigrations
 python manage.py migrate
 python manage.py createsuperuser
 
-docker build -t baby-tools-shop .
-docker run -it --rm -p 8000:8000 baby-tools-shop
-docker run -d --name baby-tools-shop -p 8025:8000 -v baby-tools-shop-data:/app --restart unless-stopped baby-tools-shop
+docker build --build-arg BASE_IMAGE=python:3.10-alpine --build-arg APP_PORT=8000 --build-arg APP_ENV=production -t baby-tools-shop .
+docker run -it --rm -p 8025:8000 baby-tools-shop
+docker run -d --name baby-tools-shop -p ${HOST_PORT:-8025}:${APP_PORT:-8000} -v baby-tools-shop-data:/app -e APP_PORT=${APP_PORT:-8000} -e APP_ENV=${APP_ENV:-production} --restart unless-stopped baby-tools-shop
 
 Move to directory with cd baby-tools-shop
 With ls -la you see all files
