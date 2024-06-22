@@ -4,7 +4,7 @@
 
 1. Technologies
 2. Hints
-3. Phtos
+3. Photos
 4. Quickstart
 5. Details
 
