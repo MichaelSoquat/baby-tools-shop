@@ -62,10 +62,14 @@ This section will cover some hot tips when trying to interacting with this repos
 
 1. Additionally you can create a superuser with `python manage.py createsuperuser`
 2. If you have problems to install docker you can try these steps:
-   ```Install packages: sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
-Add GPG key: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-Add docker repo: sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-Statuscheck: sudo systemctl status docker```
+
+  ```
+  Install packages: sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
+  Add GPG key: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  Add docker repo: sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+  Statuscheck: sudo systemctl status docker
+  ```
+
 3. Make migrations: This command looks at the changes in your models (the structure of your database) and creates new migration files in the migrations directory. These files are used to apply changes to your database schema
 4. Migrate: This command applies the migration files created by makemigrations to your database, updating the schema and ensuring it matches your models. This step is crucial for synchronizing your database with your Django application
 5. Settings.py explanation: 
