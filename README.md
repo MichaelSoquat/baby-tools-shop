@@ -84,3 +84,4 @@ This section will cover some hot tips when trying to interacting with this repos
 - `-e APP_PORT=${APP_PORT:-8000}` and `-e APP_ENV=${APP_ENV:-production}` set environment variables within the container
 - `--restart unless-stopped` ensures the container restarts automatically unless it is explicitly stopped
 - `baby-tools-shop` specifies the image to use for the container
+8. With `docker ps` you see the list of all docker containers running. With `docker stop <container-id>` you can stop the container
