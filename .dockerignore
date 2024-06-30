@@ -3,5 +3,7 @@
 __pycache__/
 .env/
 Dockerfile.*
-README.md
+*.md
 LICENSE
+*.pdf
+*.log
