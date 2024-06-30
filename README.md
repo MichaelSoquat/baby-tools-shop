@@ -1,5 +1,13 @@
 # E-Commerce Project For Baby Tools
 
+### Table of contents
+
+1. Technologies
+2. Hints
+3. Photos
+4. Quickstart
+5. Details
+
 ### TECHNOLOGIES
 
 - Python 3.9
@@ -38,36 +46,42 @@ This section will cover some hot tips when trying to interacting with this repos
 
 ### Quickstart
 
-Clone the git repo with `git clone <path>`
-Install docker with `sudo apt-get install docker-ce`
+1. Clone the git repo with `git clone <path>`
+2. Install docker with `sudo apt-get install docker-ce`
+3. Restart the sockets `sudo systemctl enable docker.socket` and `sudo systemctl start docker.socket`
+4. Install python: `sudo apt-get install python3 python3-pip`
+5. Create an environment and activate it: `sudo apt install python3-venv` `python3 -m venv env` `source env/bin/activate`
+6. Install requirements: `pip install -r requirements.txt`
+7. Make migrations: `python manage.py makemigrations`
+8. Migrate: `python manage.py migrate`
+9. Go to `settings.py` and change `DEBUG` to `False` and enter `ALLOWED_HOSTS` LIKE `['IP_ADDRESS']`
+10. Build docker image: `docker build --build-arg BASE_IMAGE=python:3.10-alpine --build-arg APP_PORT=8000 --build-arg APP_ENV=production -t baby-tools-shop .`
+11. Run docker: `docker run -d --name baby-tools-shop -p ${HOST_PORT:-8025}:${APP_PORT:-8000} -v baby-tools-shop-data:/app -e APP_PORT=${APP_PORT:-8000} -e APP_ENV=${APP_ENV:-production} --restart unless-stopped baby-tools-shop`
 
-Restart the sockets `sudo systemctl enable docker.socket`
-`sudo systemctl start docker.socket`
-Install python: sudo apt-get install python3 python3-pip
-sudo apt install python3-venv
-python3 -m venv env
-source env/bin/activate
-pip install -r requirements.txt
-python manage.py makemigrations
-python manage.py migrate
-python manage.py createsuperuser
+### Details
 
-docker build --build-arg BASE_IMAGE=python:3.10-alpine --build-arg APP_PORT=8000 --build-arg APP_ENV=production -t baby-tools-shop .
-docker run -it --rm -p 8025:8000 baby-tools-shop
-docker run -d --name baby-tools-shop -p ${HOST_PORT:-8025}:${APP_PORT:-8000} -v baby-tools-shop-data:/app -e APP_PORT=${APP_PORT:-8000} -e APP_ENV=${APP_ENV:-production} --restart unless-stopped baby-tools-shop
+1. Additionally you can create a superuser with `python manage.py createsuperuser`
+2. If you have problems to install docker you can try these steps:
 
-Move to directory with cd baby-tools-shop
-With ls -la you see all files
+  ```
+  Install packages: sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
+  Add GPG key: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  Add docker repo: sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+  Statuscheck: sudo systemctl status docker
+  ```
 
-
-
-
-
-
-
-Install packages: sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
-Add GPG key: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-Add docker repo: sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-Statuscheck: sudo systemctl status docker
-
-
+3. Make migrations: This command looks at the changes in your models (the structure of your database) and creates new migration files in the migrations directory. These files are used to apply changes to your database schema
+4. Migrate: This command applies the migration files created by makemigrations to your database, updating the schema and ensuring it matches your models. This step is crucial for synchronizing your database with your Django application
+5. Settings.py explanation: 
+- Setting DEBUG to False ensures that detailed error messages are not displayed to users in a production environment, which is important for security
+- The ALLOWED_HOSTS setting specifies a list of strings representing the host/domain names that your Django site can serve. This prevents HTTP Host header attacks
+6. Build docker image: This command builds a Docker image named baby-tools-shop using the Dockerfile in the current directory. The --build-arg options are used to pass arguments to the Docker build process, allowing you to specify the base image (python:3.10-alpine), the application port (8000), and the environment (production)
+7. Run docker:
+- `-d` runs the container in detached mode, meaning it runs in the background
+- `--name baby-tools-shop` gives the container a specific name
+- `-p ${HOST_PORT:-8025}:${APP_PORT:-8000}` maps the host port (HOST_PORT with a default of 8025) to the container port (APP_PORT with a default of 8000)
+- `-v baby-tools-shop-data:/app` mounts a volume named baby-tools-shop-data to the /app directory in the container. This is used for persistent data storage
+- `-e APP_PORT=${APP_PORT:-8000}` and `-e APP_ENV=${APP_ENV:-production}` set environment variables within the container
+- `--restart unless-stopped` ensures the container restarts automatically unless it is explicitly stopped
+- `baby-tools-shop` specifies the image to use for the container
+8. With `docker ps` you see the list of all docker containers running. With `docker stop <container-id>` you can stop the container
