@@ -18,4 +18,5 @@ RUN pip install -r requirements.txt
 
 EXPOSE ${APP_PORT}
 
-CMD ["python", "manage.py", "runserver", `0.0.0.0:${APP_PORT}`]
+# Führt `makemigrations` und `migrate` aus, bevor der Server gestartet wird
+CMD ["sh", "-c", "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:${APP_PORT}"]
