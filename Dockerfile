@@ -11,12 +11,11 @@ WORKDIR /app
 
 COPY . .
 
-# Wechsle in das Verzeichnis der Django-Anwendung
+# Go to django app directory
 WORKDIR /app/babyshop_app
 
 RUN pip install -r requirements.txt
 
 EXPOSE ${APP_PORT}
 
-# Führt `makemigrations` und `migrate` aus, bevor der Server gestartet wird
 CMD ["sh", "-c", "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:${APP_PORT}"]
