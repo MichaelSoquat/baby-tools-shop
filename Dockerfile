@@ -7,15 +7,24 @@ FROM ${BASE_IMAGE}
 ENV APP_PORT=${APP_PORT}
 ENV APP_ENV=${APP_ENV}
 
+ENV DJANGO_SUPERUSER_PASSWORD=admin
+ENV DJANGO_SUPERUSER_EMAIL=admin@admin.com
+ENV DJANGO_SUPERUSER_USERNAME=admin
+
 WORKDIR /app
 
 COPY . .
 
-# Go to django app directory
 WORKDIR /app/babyshop_app
 
 RUN pip install -r requirements.txt
+RUN python manage.py makemigrations
+RUN python manage.py migrate
+RUN python manage.py createsuperuser \
+    --noinput \
+    --username $DJANGO_SUPERUSER_USERNAME \
+    --email $DJANGO_SUPERUSER_EMAIL
 
 EXPOSE ${APP_PORT}
 
-CMD ["sh", "-c", "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:${APP_PORT}"]
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
