@@ -72,7 +72,7 @@ This section will cover some hot tips when trying to interacting with this repos
     -p 8025:8000 \
     -v babyshop_media:/app/babyshop_app/media \
     -v babyshop_static:/app/babyshop_app/static \
-    -v babyshop_static:/app/babyshop_app/db.sqlite3 \
+    -v babyshop_db:/app/babyshop_app/db.sqlite3 \
     --restart on-failure \
     baby-tools-shop:<your-tag>
     ```
