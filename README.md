@@ -68,13 +68,13 @@ This section will cover some hot tips when trying to interacting with this repos
 12. Run docker:
     
     ```
-    docker run -d --name babyshop \
+    docker run -d --name baby-tools-shop \
     -p 8025:8000 \
+    -v babyshop_db:/app/babyshop_app/db.sqlite3 \
     -v babyshop_media:/app/babyshop_app/media \
     -v babyshop_static:/app/babyshop_app/static \
-    -v babyshop_db:/app/babyshop_app/db.sqlite3 \
     --restart on-failure \
-    baby-tools-shop:<your-tag>
+    babyshop:<your-tag>
     ```
     
 14. Create a superuser in container
