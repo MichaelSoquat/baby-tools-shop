@@ -61,7 +61,7 @@ This section will cover some hot tips when trying to interacting with this repos
     --build-arg DJANGO_SUPERUSER_USERNAME=<your-username> \
     --build-arg DJANGO_SUPERUSER_EMAIL=<your-username> \
     --build-arg DJANGO_SUPERUSER_PASSWORD=<your-password> \
-    -t babyshop:<your-tag> .
+    -t baby-tools-shop:<your-tag> .
     ```
 12. Run docker:
     ```
@@ -70,7 +70,7 @@ This section will cover some hot tips when trying to interacting with this repos
     -v babyshop_media:/app/babyshop_app/media \
     -v babyshop_static:/app/babyshop_app/static \
     --restart on-failure \
-    babyshop:<your-tag>
+    baby-tools-shop:<your-tag>
     ```
 13. Create a superuser in container
     ```
@@ -95,9 +95,8 @@ This section will cover some hot tips when trying to interacting with this repos
 5. Settings.py explanation: 
 - Setting DEBUG to False ensures that detailed error messages are not displayed to users in a production environment, which is important for security
 - The ALLOWED_HOSTS setting specifies a list of strings representing the host/domain names that your Django site can serve. This prevents HTTP Host header attacks
-6. Build docker image: This command builds a Docker image named baby-tools-shop using the Dockerfile in the current directory. The --build-arg options are used to pass arguments to the Docker build process, allowing you to specify the base image (python:3.10-alpine), the application port (8000), and the environment (production)
-7. Run docker:
-    ```
+6. Run docker:
+  ```
   `-d` runs the container in detached mode, meaning it runs in the background
   `--name baby-tools-shop` gives the container a specific name
   `-p ${HOST_PORT:-8025}:${APP_PORT:-8000}` maps the host port (HOST_PORT with a default of 8025) to the container port (APP_PORT with a default of 8000)
@@ -106,8 +105,8 @@ This section will cover some hot tips when trying to interacting with this repos
   `--restart unless-stopped` ensures the container restarts automatically unless it is explicitly stopped
   `baby-tools-shop` specifies the image to use for the container
   ```
-8. With `docker ps` you see the list of all docker containers running. With `docker stop <container-id>` you can stop the container
-9. Createsuperuser:
+7. With `docker ps` you see the list of all docker containers running. With `docker stop <container-id>` you can stop the container
+8. Createsuperuser:
     ```
     docker exec -it <container-id> bash
 
