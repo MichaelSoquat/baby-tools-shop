@@ -72,6 +72,7 @@ This section will cover some hot tips when trying to interacting with this repos
     -p 8025:8000 \s
     -v babyshop_media:/app/babyshop_app/media \
     -v babyshop_static:/app/babyshop_app/static \
+    -v babyshop_static:/app/babyshop_app/db.sqlite3 \
     --restart on-failure \
     baby-tools-shop:<your-tag>
     ```
@@ -106,7 +107,7 @@ This section will cover some hot tips when trying to interacting with this repos
   `-d` runs the container in detached mode, meaning it runs in the background
   `--name baby-tools-shop` gives the container a specific name
   `-p ${HOST_PORT:-8025}:${APP_PORT:-8000}` maps the host port (HOST_PORT with a default of 8025) to the container port (APP_PORT with a default of 8000)
-  `-v babyshop_media:/app/babyshop_app/media \ and -v babyshop_static:/app/babyshop_app/static \` mounts a volume to the container. This is used for persistent data storage
+  `-v babyshop_media:/app/babyshop_app/media \ and -v babyshop_static:/app/babyshop_app/static \ and -v babyshop_static:/app/babyshop_app/db.sqlite3 \` mounts a volume to the container. This is used for persistent data storage
   `-e APP_PORT=${APP_PORT:-8000}` and `-e APP_ENV=${APP_ENV:-production}` set environment variables within the container
   `--restart unless-stopped` ensures the container restarts automatically unless it is explicitly stopped
   `baby-tools-shop` specifies the image to use for the container
