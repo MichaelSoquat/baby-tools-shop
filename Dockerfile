@@ -1,10 +1,6 @@
-ARG BASE_IMAGE=python:3.10-alpine
-ARG APP_ENV=production
-
-FROM ${BASE_IMAGE}
+FROM python:3.10-alpine
 
 ENV APP_PORT=8000;
-ENV APP_ENV=${APP_ENV}
 
 WORKDIR /app
 
