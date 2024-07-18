@@ -2,6 +2,7 @@
 .git/
 __pycache__/
 .env/
+.venv/
 Dockerfile.*
 *.md
 LICENSE
