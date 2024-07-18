@@ -74,7 +74,7 @@ This section will cover some hot tips when trying to interacting with this repos
     -v babyshop_media:/app/babyshop_app/media \
     -v babyshop_static:/app/babyshop_app/static \
     --restart on-failure \
-    babyshop:<your-tag>
+    baby-tools-shop:<your-tag>
     ```
     
 14. Create a superuser in container
