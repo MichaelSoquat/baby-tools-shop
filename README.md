@@ -4,8 +4,8 @@
 
 1. Technologies
 2. Hints
-3. Photos
-4. Quickstart
+3. Quickstart
+4. Photos
 5. Details
 
 ### TECHNOLOGIES
@@ -20,29 +20,6 @@ This section will cover some hot tips when trying to interacting with this repos
 
 - Settings & Configuration for Django can be found in `babyshop_app/babyshop/settings.py`
 - Routing: Routing information, such as available routes can be found from any `urls.py` file in `babyshop_app` and corresponding subdirectories
-
-### Photos
-
-##### Home Page with login
-
-<img alt="" src="https://github.com/MET-DEV/Django-E-Commerce/blob/master/project_images/capture_20220323080815407.jpg"></img>
-##### Home Page with filter
-<img alt="" src="https://github.com/MET-DEV/Django-E-Commerce/blob/master/project_images/capture_20220323080840305.jpg"></img>
-##### Product Detail Page
-<img alt="" src="https://github.com/MET-DEV/Django-E-Commerce/blob/master/project_images/capture_20220323080934541.jpg"></img>
-
-##### Home Page with no login
-<img alt="" src="https://github.com/MET-DEV/Django-E-Commerce/blob/master/project_images/capture_20220323080953570.jpg"></img>
-
-
-##### Register Page
-
-<img alt="" src="https://github.com/MET-DEV/Django-E-Commerce/blob/master/project_images/capture_20220323081016022.jpg"></img>
-
-
-##### Login Page
-
-<img alt="" src="https://github.com/MET-DEV/Django-E-Commerce/blob/master/project_images/capture_20220323081044867.jpg"></img>
 
 ### Quickstart
 
@@ -114,7 +91,7 @@ This section will cover some hot tips when trying to interacting with this repos
   ```
 
 7. **Containers**: With `docker ps` you see the list of all docker containers running. With `docker stop <container-id>` you can stop the container
-8. **Createsuperuser**:
+8. **Connect to container**:
    
     ```
     docker exec -it <container-id> bash
@@ -124,3 +101,30 @@ This section will cover some hot tips when trying to interacting with this repos
     # <container-id> - container id you want to speak to
     # bash           - shell
     ```
+9. **Createsuperuser**:
+    ```
+    python manage.py createsuperuser
+    ```
+    
+### Photos
+
+##### Home Page with login
+
+<img alt="" src="https://github.com/MET-DEV/Django-E-Commerce/blob/master/project_images/capture_20220323080815407.jpg"></img>
+##### Home Page with filter
+<img alt="" src="https://github.com/MET-DEV/Django-E-Commerce/blob/master/project_images/capture_20220323080840305.jpg"></img>
+##### Product Detail Page
+<img alt="" src="https://github.com/MET-DEV/Django-E-Commerce/blob/master/project_images/capture_20220323080934541.jpg"></img>
+
+##### Home Page with no login
+<img alt="" src="https://github.com/MET-DEV/Django-E-Commerce/blob/master/project_images/capture_20220323080953570.jpg"></img>
+
+
+##### Register Page
+
+<img alt="" src="https://github.com/MET-DEV/Django-E-Commerce/blob/master/project_images/capture_20220323081016022.jpg"></img>
+
+
+##### Login Page
+
+<img alt="" src="https://github.com/MET-DEV/Django-E-Commerce/blob/master/project_images/capture_20220323081044867.jpg"></img>
