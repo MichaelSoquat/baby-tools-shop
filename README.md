@@ -77,7 +77,7 @@ This section will cover some hot tips when trying to interacting with this repos
 4. **Migrate**: This command applies the migration files created by makemigrations to your database, updating the schema and ensuring it matches your models. This step is crucial for synchronizing your database with your Django application
 5. **Settings.py** explanation: 
     Setting DEBUG to False ensures that detailed error messages are not displayed to users in a production environment, which is important for security
-    The ALLOWED_HOSTS setting specifies a list of strings representing the host/domain names that your Django site can serve. This prevents HTTP Host header attacks
+    The `ALLOWED_HOSTS` setting specifies a list of strings representing the host/domain names that your Django site can serve. This prevents HTTP Host header attacks
 6. **Run docker**:
    
   ```
