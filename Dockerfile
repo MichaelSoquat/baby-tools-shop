@@ -12,10 +12,6 @@ COPY . .
 
 WORKDIR /app/babyshop_app
 
-ARG DJANGO_SUPERUSER_USERNAME
-ARG DJANGO_SUPERUSER_EMAIL
-ARG DJANGO_SUPERUSER_PASSWORD
-
 RUN pip install --upgrade pip && \
     pip install -r requirements.txt
 
