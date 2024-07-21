@@ -29,10 +29,11 @@ This section will cover some hot tips when trying to interacting with this repos
 4. Install python: `sudo apt-get install python3 python3-pip`
 5. Create an environment and activate it: `sudo apt install python3-venv` `python3 -m venv env` `source env/bin/activate`
 6. Install requirements: `pip install -r requirements.txt`
-7. Make migrations: `python manage.py makemigrations`
-8. Migrate: `python manage.py migrate`
-9. Go to `settings.py` and change `DEBUG` to `False` and enter `ALLOWED_HOSTS` LIKE `['IP_ADDRESS']`
-10. Build docker image:
+7. Change directory with `CD babyshop_app`
+8. Make migrations: `python manage.py makemigrations`
+9. Migrate: `python manage.py migrate`
+10. Go to `settings.py` and change `DEBUG` to `False` and enter `ALLOWED_HOSTS` LIKE `['IP_ADDRESS']`
+11. Build docker image:
     
     ```
     docker build
@@ -47,14 +48,14 @@ This section will cover some hot tips when trying to interacting with this repos
     ```
     docker run -d --name baby-tools-shop \
     -p 8025:8000 \
-    -v babyshop_db:/app/babyshop_app/db.sqlite3 \
+    -v <sqlite_absolute_path>:/app/babyshop_app/db.sqlite3 \
     -v babyshop_media:/app/babyshop_app/media \
     -v babyshop_static:/app/babyshop_app/static \
     --restart on-failure \
     baby-tools-shop:<your-tag>
     ```
     
-14. Create a superuser in container
+13. Create a superuser in container
     
     ```
     docker exec -it <container-id> bash
@@ -63,35 +64,30 @@ This section will cover some hot tips when trying to interacting with this repos
   
 
 ### Details
+## These are tips and explanations for the quicksart section and more information
 
-1. If you have **problems to install docker** you can try these steps:
-
-  ```
-  Install packages: sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
-  Add GPG key: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-  Add docker repo: sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-  Statuscheck: sudo systemctl status docker
-  ```
-
-3. **Make migrations**: This command looks at the changes in your models (the structure of your database) and creates new migration files in the migrations directory. These files are used to apply changes to your database schema
-4. **Migrate**: This command applies the migration files created by makemigrations to your database, updating the schema and ensuring it matches your models. This step is crucial for synchronizing your database with your Django application
-5. **Settings.py** explanation: 
+1. **Make migrations**: This command looks at the changes in your models (the structure of your database) and creates new migration files in the migrations directory. These files are used to apply changes to your database schema
+2. **Migrate**: This command applies the migration files created by makemigrations to your database, updating the schema and ensuring it matches your models. This step is crucial for synchronizing your database with your Django application
+3. **Settings.py** explanation: 
     Setting DEBUG to False ensures that detailed error messages are not displayed to users in a production environment, which is important for security
     The `ALLOWED_HOSTS` setting specifies a list of strings representing the host/domain names that your Django site can serve. This prevents HTTP Host header attacks
-6. **Run docker**:
+4. **Run docker**:
    
   ```
   `-d` runs the container in detached mode, meaning it runs in the background
   `--name baby-tools-shop` gives the container a specific name
   `-p ${HOST_PORT:-8025}:${APP_PORT:-8000}` maps the host port (HOST_PORT with a default of 8025) to the container port (APP_PORT with a default of 8000)
-  `-v babyshop_media:/app/babyshop_app/media \ and -v babyshop_static:/app/babyshop_app/static \ and -v babyshop_static:/app/babyshop_app/db.sqlite3 \` mounts a volume to the container. This is used for persistent data storage
+  ` -v <sqlite_absolute_path>:/app/babyshop_app/db.sqlite3 \
+    -v babyshop_media:/app/babyshop_app/media \
+    -v babyshop_static:/app/babyshop_app/static \` mounts a volume to the container. This is used for persistent data storage. **Attention `sqlite_absolute_path` has to be the absolute path because it´s not a directory but a file!**
   `-e APP_PORT=${APP_PORT:-8000}` and `-e APP_ENV=${APP_ENV:-production}` set environment variables within the container
   `--restart unless-stopped` ensures the container restarts automatically unless it is explicitly stopped
   `baby-tools-shop` specifies the image to use for the container
+  ``
   ```
 
-7. **Containers**: With `docker ps` you see the list of all docker containers running. With `docker stop <container-id>` you can stop the container
-8. **Connect to container**:
+6. **Containers**: With `docker ps` you see the list of all docker containers running. With `docker stop <container-id>` you can stop the container
+7. **Connect to container**:
    
     ```
     docker exec -it <container-id> bash
@@ -101,7 +97,7 @@ This section will cover some hot tips when trying to interacting with this repos
     # <container-id> - container id you want to speak to
     # bash           - shell
     ```
-9. **Createsuperuser**:
+8. **Createsuperuser**:
     ```
     python manage.py createsuperuser
     ```
