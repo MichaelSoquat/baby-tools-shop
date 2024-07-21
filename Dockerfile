@@ -20,7 +20,5 @@ RUN python manage.py makemigrations && \
     python manage.py collectstatic --noinput && \
     python manage.py createsuperuser --noinput --username $DJANGO_SUPERUSER_USERNAME --email $DJANGO_SUPERUSER_EMAIL
 
-ENV APP_PORT=8000
-
 EXPOSE ${APP_PORT}
 CMD ["sh", "-c", "python manage.py runserver 0.0.0.0:${APP_PORT}"]
