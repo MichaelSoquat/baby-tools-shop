@@ -36,22 +36,24 @@ This section will cover some hot tips when trying to interacting with this repos
 11. Build docker image:
     
     ```
-    docker build
-    --build-arg DJANGO_SUPERUSER_USERNAME=<your-username> \
-    --build-arg DJANGO_SUPERUSER_EMAIL=<your-username> \
-    --build-arg DJANGO_SUPERUSER_PASSWORD=<your-password> \
-    -t baby-tools-shop:<your-tag> .
+    docker build \
+        --build-arg DJANGO_SUPERUSER_USERNAME=<your-username> \
+        --build-arg DJANGO_SUPERUSER_EMAIL=<your-username> \
+        --build-arg DJANGO_SUPERUSER_PASSWORD=<your-password> \
+        -t baby-tools-shop:<your-tag> .
     ```
     
 12. Run docker:
     
     ```
-    docker run -d --name baby-tools-shop \
-    -p 8025:8000 \
-    -v <sqlite_absolute_path>:/app/babyshop_app/db.sqlite3 \
-    -v babyshop_media:/app/babyshop_app/media \
-    -v babyshop_static:/app/babyshop_app/static \
-    --restart on-failure \
+    docker run \
+        -d \
+        --name baby-tools-shop \
+        -p 8025:8000 \
+        -v <sqlite_absolute_path>:/app/babyshop_app/db.sqlite3 \
+        -v babyshop_media:/app/babyshop_app/media \
+        -v babyshop_static:/app/babyshop_app/static \
+        --restart on-failure \
     baby-tools-shop:<your-tag>
     ```
     
